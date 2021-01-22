@@ -8,10 +8,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
+import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.annotation.LayoutRes
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
+import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.wu.corelib.R
 import kotlinx.android.synthetic.main.layout_top.*
@@ -25,9 +27,11 @@ abstract class BaseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         this.mActivity = this
         super.onCreate(savedInstanceState)
-        initData(savedInstanceState)
+        ActivityUtils.addActivityLifecycleCallbacks(this, null)
         initContentView(R.layout.layout_top)
         setContentView(getLayoutId())
+
+        initialize(savedInstanceState)
     }
 
     abstract fun getLayoutId(): Int
@@ -50,6 +54,12 @@ abstract class BaseActivity : AppCompatActivity() {
         setAndroidNativeLightStatusBar(false)
 
         LayoutInflater.from(this).inflate(layoutResID, parentLayout, true)
+    }
+
+    protected fun initialize(savedInstanceState: Bundle?) {
+        initTopView()
+        initView()
+        initData(savedInstanceState)
     }
 
     /**
@@ -78,6 +88,9 @@ abstract class BaseActivity : AppCompatActivity() {
         }
     }
 
+    protected fun initTopView() {
+    }
+
     fun setTitleText(title: String?) {
         setTitleText(title, false)
     }
@@ -96,6 +109,10 @@ abstract class BaseActivity : AppCompatActivity() {
         appBarLayout.visibility = View.VISIBLE
         toolBar.title = title
         if (navigationIcon) toolBar.navigationIcon = null;
+    }
+
+    fun setLeftClickListener(leftImage: ImageView) {
+        leftImage.setOnClickListener { finish() }
     }
 
     fun showToast(msg: String) {
