@@ -1,0 +1,121 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-android-extensions'
+}
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    defaultConfig {
+        applicationId rootProject.ext.applicationId
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode VERSION_CODE as int
+        versionName VERSION_NAME
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
+
+        flavorDimensions "versionCode"
+    }
+
+    //签名配置
+    signingConfigs {
+        debug {
+            storeFile file('./transOn.jks')
+            storePassword '123456'
+            keyAlias = 'transOn'
+            keyPassword '123456'
+//            v2SigningEnabled false
+        }
+        release {
+            storeFile file('./transOn.jks')
+            storePassword '123456'
+            keyAlias = 'transOn'
+            keyPassword '123456'
+//            v2SigningEnabled true
+        }
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+            debuggable IS_DEBUG_MODE.toBoolean()
+            signingConfig signingConfigs.debug
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+//            buildConfigField 'String', 'SY_APP_ID', SY_APP_ID
+        }
+        release {
+            minifyEnabled false
+            //压缩优化
+            zipAlignEnabled false
+            //移出无用资源
+            shrinkResources false
+            debuggable IS_DEBUG_MODE.toBoolean()
+            signingConfig signingConfigs.release
+            //proguard-android-optimize.txt 是Android提供的默认混淆配置文件，在配置的Android sdk /tools/proguard目录下
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+//            buildConfigField 'String', 'SY_APP_ID', SY_APP_ID
+        }
+    }
+
+    applicationVariants.all { variant ->
+        variant.outputs.all {
+            outputFileName = "MDesign" + "_" + buildType.name + "_v${variant.versionName}_${variant.productFlavors[0].name}.apk"
+        }
+    }
+
+    //多渠道打包
+    productFlavors {
+        wu {
+            manifestPlaceholders = [MARKETS_CHANNEL_VALUE: "wu"]
+        }
+
+        yingyongbao {
+            manifestPlaceholders = [MARKETS_CHANNEL_VALUE: "yingyongbao"]
+        }
+
+        huawei {
+            manifestPlaceholders = [MARKETS_CHANNEL_VALUE: "huawei"]
+        }
+
+        xiaomi {
+            manifestPlaceholders = [MARKETS_CHANNEL_VALUE: "xiaomi"]
+        }
+
+        oppo {
+            manifestPlaceholders = [MARKETS_CHANNEL_VALUE: "oppo"]
+        }
+
+        vivo {
+            manifestPlaceholders = [MARKETS_CHANNEL_VALUE: "vivo"]
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+    implementation 'androidx.navigation:navigation-fragment:2.3.2'
+    implementation 'androidx.navigation:navigation-ui:2.3.2'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.3.2'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.3.2'
+    implementation project(path: ':corelib')
+
+    //aRouter
+    annotationProcessor 'com.alibaba:arouter-compiler:1.2.2'
+}

@@ -1,0 +1,3 @@
+rootProject.name = "MDesignKotlin"
+include ':corelib'
+include ':app'

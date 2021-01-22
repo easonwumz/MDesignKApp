@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:boxBackgroundColor="@color/white"
+        app:boxStrokeColor="@color/black"
+        app:boxStrokeWidth="@dimen/DIMEN_1DP"
+        app:hintTextAppearance="@style/hintAppearance"
+        app:hintTextColor="@color/c_FF4444">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etPhone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="请输入手机号"
+            android:includeFontPadding="false"
+            android:inputType="phone"
+            android:maxLength="11"
+            android:paddingStart="@dimen/DIMEN_0DP"
+            android:paddingEnd="@dimen/DIMEN_0DP"
+            android:textColor="@color/c_2D3C5A"
+            android:textColorHint="@color/c_8995AB"
+            android:textSize="@dimen/DIMEN_15SP"
+            tools:ignore="Autofill" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputPwd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/DIMEN_10DP"
+        app:boxBackgroundColor="@color/white"
+        app:boxStrokeColor="@color/black"
+        app:boxStrokeWidth="@dimen/DIMEN_1DP"
+        app:errorEnabled="true"
+        app:errorTextColor="@color/c_FF4444"
+        app:hintTextAppearance="@style/hintAppearance"
+        app:hintTextColor="@color/c_FF4444"
+        app:passwordToggleEnabled="true">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etPwd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="请输入密码"
+            android:includeFontPadding="false"
+            android:inputType="textPassword"
+            android:lines="1"
+            android:paddingStart="@dimen/DIMEN_0DP"
+            android:paddingEnd="@dimen/DIMEN_0DP"
+            android:textColor="@color/c_2D3C5A"
+            android:textColorHint="@color/c_8995AB"
+            android:textSize="@dimen/DIMEN_15SP"
+            tools:ignore="Autofill" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/DIMEN_40DP"
+        android:layout_gravity="start"
+        android:layout_marginTop="@dimen/DIMEN_16DP"
+        android:background="@drawable/ripple_btn"
+        android:paddingTop="@dimen/DIMEN_0DP"
+        android:paddingBottom="@dimen/DIMEN_0DP"
+        android:text="Sign in"
+        android:textColor="@color/white" />
+
+    <ProgressBar
+        android:id="@+id/loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="64dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/password"
+        app:layout_constraintStart_toStartOf="@+id/password"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.3" />
+</LinearLayout>
