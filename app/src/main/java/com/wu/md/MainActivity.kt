@@ -3,7 +3,6 @@ package com.wu.md
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.view.Menu
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
@@ -17,6 +16,8 @@ import com.google.android.material.snackbar.Snackbar
 import com.wu.corelib.base.BaseActivity
 
 class MainActivity : BaseActivity() {
+
+    private var exitTime = 0L
 
     private lateinit var appBarConfiguration: AppBarConfiguration
 
@@ -36,11 +37,6 @@ class MainActivity : BaseActivity() {
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
 
-        val fab: FloatingActionButton = findViewById(R.id.fab)
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
-        }
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
         val navView: NavigationView = findViewById(R.id.nav_view)
         val navController = findNavController(R.id.nav_host_fragment)
@@ -58,14 +54,18 @@ class MainActivity : BaseActivity() {
     override fun initData(savedInstanceState: Bundle?) {
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.main, menu)
-        return true
-    }
-
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
+
+    override fun onBackPressed() {
+        val currentTime = System.currentTimeMillis()
+        if ((currentTime - exitTime) < 2000) {
+            super.onBackPressed()
+        } else {
+            showToast("再按一次退出程序")
+            exitTime = currentTime
+        }
     }
 }
