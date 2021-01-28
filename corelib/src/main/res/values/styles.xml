@@ -17,4 +17,23 @@
         <item name="titleTextColor">@color/white</item>
         <item name="colorControlNormal">@color/white</item>
     </style>
+
+    <style name="TextView_12" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textSize">@dimen/DIMEN_12SP</item>
+    </style>
+
+    <style name="TextView_14" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textSize">@dimen/DIMEN_14SP</item>
+    </style>
+
+    <style name="TextView_White_14" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/DIMEN_14SP</item>
+    </style>
+
+    <style name="TextView_White_14_Bold" parent="TextView_White_14">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/DIMEN_14SP</item>
+        <item name="android:textStyle">bold</item>
+    </style>
 </resources>

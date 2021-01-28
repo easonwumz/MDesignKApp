@@ -1,13 +1,20 @@
 <resources>
     <dimen name="DIMEN_0DP">0dp</dimen>
     <dimen name="DIMEN_1DP">1dp</dimen>
+    <dimen name="DIMEN_4DP">4dp</dimen>
+    <dimen name="DIMEN_5DP">5dp</dimen>
+    <dimen name="DIMEN_8DP">8dp</dimen>
     <dimen name="DIMEN_10DP">10dp</dimen>
     <dimen name="DIMEN_16DP">16dp</dimen>
     <dimen name="DIMEN_20DP">20dp</dimen>
     <dimen name="DIMEN_40DP">40dp</dimen>
     <dimen name="DIMEN_45DP">45dp</dimen>
+    <dimen name="DIMEN_50DP">50dp</dimen>
+    <dimen name="DIMEN_150DP">150dp</dimen>
+    <dimen name="DIMEN_160DP">160dp</dimen>
 
 
+    <dimen name="DIMEN_12SP">12sp</dimen>
     <dimen name="DIMEN_14SP">14sp</dimen>
     <dimen name="DIMEN_15SP">15sp</dimen>
 </resources>
